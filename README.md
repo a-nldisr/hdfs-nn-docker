@@ -6,7 +6,7 @@ Current idea is to create on the hardware directories with your favorite configu
 /hdfs-data   
 /hdfs-nn   
 
-Each directory has a location to the desired projectname. In this case we use "maangement" as an example:   
+Each directory has a location to the desired projectname. In this case we use "management" as an example:   
    
 /hdfs-data/management   
 /hdfs-nn/management   
