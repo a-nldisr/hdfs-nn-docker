@@ -29,8 +29,8 @@ RUN tar xfz jdk-7u67-linux-x64.tar.gz -C /opt/bin/
 RUN rm -f jdk-7u67-linux-x64.tar.gz
 
 # Synch the time
-ntpd -qg
-service ntp start
+RUN ntpd -qg
+RUN service ntp start
 
 # Set the environment for JAVA
 ENV JAVA_HOME /opt/bin/jdk1.7.0_67
