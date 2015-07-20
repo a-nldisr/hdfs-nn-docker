@@ -6,22 +6,31 @@ MAINTAINER Rogier Dikkes <r.dikkes @ gmail.com>
 
 USER root
 
+# We set the timezone
+ENV TZ=Europe/Amsterdam
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 # We set the environment for the project name, this will be declared in the marathon json file.
 ENV GROUP management
 
 # Install basic tools
-RUN apt-get update -y && apt-get install --no-install-recommends -y -q wget curl sudo supervisor ansible monit uuid-runtime git
+RUN apt-get update -y && apt-get install --no-install-recommends -y -q wget curl sudo supervisor ansible monit uuid-runtime git ntp
 
 # Create all directories we need
 RUN mkdir -p /opt/bin/
 RUN mkdir -p /var/log/hadoop/
 RUN mkdir -p /hdfs-data/
+RUN mkdir -p /hdfs-nn/
 RUN mkdir -p /etc/apt/sources.list.d/
 
 # Get the Java packages
 RUN curl -LO 'http://download.oracle.com/otn-pub/java/jdk/7u67-b01/jdk-7u67-linux-x64.tar.gz' -H 'Cookie: oraclelicense=accepmt-securebackup-cookie'
 RUN tar xfz jdk-7u67-linux-x64.tar.gz -C /opt/bin/
 RUN rm -f jdk-7u67-linux-x64.tar.gz
+
+# Synch the time
+ntpd -qg
+service ntp start
 
 # Set the environment for JAVA
 ENV JAVA_HOME /opt/bin/jdk1.7.0_67

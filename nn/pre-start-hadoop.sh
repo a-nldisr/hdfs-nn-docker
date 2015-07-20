@@ -19,9 +19,9 @@ UUID="13b34e97-c99e-4b48-ac26-81c3397661b5"
 #UUID=`cat /opt/bin/management/uuid`
 
 # create and format namenode if doesn't exist
-if [ ! -d /opt/bin/cdh5/nn/current ]; then
-  mkdir -p /opt/bin/cdh5/nn
-  chown -R hdfs:hadoop /opt/bin/cdh5/nn
-  chmod 700 /opt/bin/cdh5/nn
+if [ ! -d /hdfs-nn/cdh5/nn/current ]; then
+  mkdir -p /hdfs-nn/cdh5/nn
+  chown -R hdfs:hadoop /hdfs-nn/cdh5/nn
+  chmod 700 /hdfs-nn/cdh5/nn
   sudo -u hdfs hadoop namenode -format -clusterId $UUID # always format with the same cluster id
 fi
