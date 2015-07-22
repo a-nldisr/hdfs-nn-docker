@@ -16,7 +16,7 @@ chown -R hdfs:hadoop /var/log/hadoop
 #	git push
 #fi
 UUID="13b34e97-c99e-4b48-ac26-81c3397661b5"
-#UUID=`cat /opt/bin/management/uuid`
+#UUID=`cat /opt/bin/uuid`
 
 # create and format namenode if doesn't exist
 if [ ! -d /hdfs-nn/cdh5/nn/current ]; then
